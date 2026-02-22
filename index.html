@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>京大 工学部 合格点ギャップ計算</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="head">
+        <h1>京大 工学部 合格点ギャップ計算</h1>
+        <p>
+          共通テストは固定 <span id="common-fixed"></span> / 225。入力は二次の素点のみ（国語100・数学200・英語150・物理100・化学100）。
+        </p>
+      </header>
+
+      <main class="layout">
+        <section class="card panel">
+          <div class="row between dept-head">
+            <div class="dept-meta">
+              <div class="muted">学科</div>
+              <div id="dept-label" class="label dept-label"></div>
+            </div>
+            <select id="dept-key" aria-label="学科選択">
+              <option value="info">情報</option>
+              <option value="chem">理工化（旧 工業化）</option>
+            </select>
+          </div>
+
+          <div class="inputs">
+            <label class="input-card">
+              <span>国語</span><span class="muted">/ 100</span>
+              <input id="jp" type="number" min="0" max="100" step="1" value="60" />
+            </label>
+            <label class="input-card">
+              <span>数学</span><span class="muted">/ 200</span>
+              <input id="math" type="number" min="0" max="200" step="1" value="120" />
+            </label>
+            <label class="input-card">
+              <span>英語</span><span class="muted">/ 150</span>
+              <input id="eng" type="number" min="0" max="150" step="1" value="90" />
+            </label>
+            <label class="input-card">
+              <span>物理</span><span class="muted">/ 100</span>
+              <input id="phys" type="number" min="0" max="100" step="1" value="70" />
+            </label>
+            <label class="input-card">
+              <span>化学</span><span class="muted">/ 100</span>
+              <input id="chem" type="number" min="0" max="100" step="1" value="70" />
+            </label>
+            <div class="input-card">
+              <div class="muted">換算（二次）</div>
+              <div id="second-weighted" class="value-lg"></div>
+              <div class="muted">数学×1.25、英語×4/3、物理×1.25、化学×1.25</div>
+            </div>
+          </div>
+
+          <div class="total">
+            <div class="muted-light">合計（共テ + 二次換算）</div>
+            <div id="total" class="value-xl"></div>
+            <div class="muted-light">※2016〜2024は1000点満点→1025点満点に正規化して表示（各点×1.025）</div>
+          </div>
+        </section>
+
+        <section class="card table-card">
+          <div class="row between">
+            <div>
+              <div class="muted">過去10年（2016〜2025）</div>
+              <div class="label">最低点・平均点・最高点との差</div>
+            </div>
+            <div class="muted">単位：点（あなたの合計 − 各指標）</div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>年度</th>
+                  <th>満点（総点）</th>
+                  <th>最低点</th>
+                  <th>最低点との差</th>
+                  <th>平均点</th>
+                  <th>平均との差</th>
+                  <th>最高点</th>
+                  <th>最高点との差</th>
+                </tr>
+              </thead>
+              <tbody id="score-body"></tbody>
+            </table>
+          </div>
+
+          <p class="muted">
+            データは「合格者 最高点・最低点・平均点（2016〜2025）」を転記。表示は比較のため全年度を1025点満点に正規化（2016〜2024は各点×1.025）。学科名は年度により「工業化」→「理工化」に表記変更。
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
